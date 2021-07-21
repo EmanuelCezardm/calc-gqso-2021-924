@@ -10,9 +10,7 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 3. Digite o comando: git clone https://github.com/EmanuelCezardm/calc-gqso-2021-924.git;
 4. Abra a pasta utilizando a sua IDE.
 
-### 📋 Pré-requisitos
-
-De que coisas você precisa para instalar o software e como instalá-lo?
+## 🛠️ Construído com
 
 * Visual Studio Code (https://code.visualstudio.com/Download)
 
