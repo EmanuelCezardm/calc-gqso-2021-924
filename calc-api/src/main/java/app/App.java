@@ -5,7 +5,7 @@ import io.jooby.Jooby;
 public class App extends Jooby {
 
   {
-    mvc(new Controller());
+    mvc(new Controlador());
     mvc(new Soma());
   }
 

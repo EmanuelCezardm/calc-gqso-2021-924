@@ -3,10 +3,10 @@ package app;
 import io.jooby.annotations.*;
 
 @Path("/")
-public class Controller {
+public class Controlador {
 
   @GET
-  public String sayHi() {
+  public String boasVindas() {
     return "Bem-vindos(as) a API calculadora!";
   }
 }
