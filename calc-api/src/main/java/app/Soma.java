@@ -8,31 +8,32 @@ public class Soma {
     
     @Path("/soma/{op1}/{op2}")
     @GET
-    public String rotaSoma(@PathParam String op1, @PathParam String op2){
+    public String rotaSoma(@PathParam String a, @PathParam String b) throws BadRequestException {
+        try {
+            double soma = soma(a,b);
+
+            return String.format("%.2f", soma);
+        } catch (IllegalArgumentException iae) {
+            throw new BadRequestException(iae.getMessage());
+        }
+    }
+
+    public double soma(String a, String b) throws IllegalArgumentException {
+        double soma;
 
         try {
-            
-            double num1 = Double.parseDouble(op1);
-            double num2 = Double.parseDouble(op2);
-            double soma = num1 + num2;
-            
-            return Double.toString(soma);
-            
+            soma = Double.parseDouble(a) + Double.parseDouble(b);
         } catch (NumberFormatException nfe) {
-            
-            if(verificacaoDeNumero(op1) && verificacaoDeNumero(op2) == false){
-
-                throw new BadRequestException(String.format("Parâmetro inválido: \\%s ", op1));
-
-            }else if(verificacaoDeNumero(op1) == false && verificacaoDeNumero(op2)){
-
-                throw new BadRequestException(String.format("Parâmetro inválido: \\%s", op2));
-
-            }
-
-            throw new BadRequestException(String.format("Parâmetros inválidos: \\%s\\%s", op1, op2));
+            throw new IllegalArgumentException(String.format("Parâmetros inválidos: %s e %s.", a, b));
         }
-        
+
+        if(verificacaoDeNumero(a) && verificacaoDeNumero(b) == false){
+            throw new IllegalArgumentException(String.format("Parâmetro inválido: %s", a));
+        } else if(verificacaoDeNumero(a) == false && verificacaoDeNumero(b)){
+            throw new IllegalArgumentException(String.format("Parâmetro inválido: %s", b));
+        } 
+
+        return soma;
     }
 
     private Boolean verificacaoDeNumero(String num){
